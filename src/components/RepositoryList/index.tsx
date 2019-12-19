@@ -7,11 +7,14 @@ const RepositoryList: React.FC = () => {
   const { repositories } = useSelector((state: ApplicationState) => state)
 
   const dispatch = useDispatch()
-  dispatch(RepositoriesTypes.LOAD_REQUEST)
+
+  useEffect(() => {
+    dispatch({ type: RepositoriesTypes.LOAD_REQUEST })
+  }, [])
   return (
     <ul>
-      {repositories.data.map(repo => (
-        <li key={repo.id}>{repo.name}</li>
+      {repositories.data.map(rep => (
+        <li key={rep.id}>{rep.name}</li>
       ))}
     </ul>
   )
